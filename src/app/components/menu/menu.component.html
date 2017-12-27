@@ -1,0 +1,8 @@
+<mat-nav-list>
+  <h3 mat-subheader>Navegación</h3>
+
+  <a mat-list-item (click)="gotoRoute(link.route)" routerLinkActive="active" *ngFor="let link of links">{{link.titulo}}</a>
+
+
+
+</mat-nav-list>

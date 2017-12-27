@@ -1,12 +1,13 @@
 <div class="app-container" [class.app-is-mobile]="mobileQuery.matches">
 
-  <mat-toolbar color="primary" class="main-toolbar">
+  <mat-toolbar color="primary" class="app-toolbar">
 
     <button mat-icon-button (click)="navLeft.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
-    <a class="none-decoration" [routerLink]="['/tablero']">Inmobiliaria</a>
+    <!-- <a class="none-decoration" [routerLink]="['/tablero']">MiPymeApp</a> -->
+    <span class="app-name">MiPymeApp</span>
 
     <span class="spacer"></span>
 
