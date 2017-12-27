@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Anuncio } from '../../model/anuncio.model';
 
 @Component({
   selector: 'app-anuncios',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnunciosComponent implements OnInit {
 
-  anuncios: any[] = [
+  anuncios: Anuncio[] = [
     {
       titulo: "Pants Deportivos",
       descripcion: "Alta resistencia e ideal para deportes",

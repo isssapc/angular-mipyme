@@ -1,3 +1,85 @@
-<div class="container">
-  crear-anuncio works!
+<div class="container py-3">
+
+  <div class="row">
+
+    <div class="col-12 col-md-6">
+      <h3 class="text-center">Configuración</h3>
+
+      <form #formAnuncio="ngForm" id="formAnuncio" (ngSubmit)="createAnuncio(formAnuncio)">
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Título del anuncio</label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.titulo" name="titulo" required/>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Fecha publicación</label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.fecha_publicacion" name="fecha_publicacion" required/>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Descripción del anuncio</label>
+          <div class="col-lg-9">
+            <textarea class="form-control" rows="4" placeholder="" [(ngModel)]="anuncio.descripcion" name="descripcion" required> </textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Mostrar</label>
+          <div class="col-lg-9">
+            <mat-checkbox ngModel name="mostrar_agregar">Mostrar botón agregar</mat-checkbox>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Publicar precios</label>
+          <div class="col-lg-9">
+            <mat-checkbox [(ngModel)]="anuncio.mostrar_precios" name="mostrar_precios">Mostrar precios en el anuncio</mat-checkbox>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Oferta</label>
+          <div class="col-lg-9">
+            <mat-checkbox ngModel name="es_oferta">Es Oferta</mat-checkbox>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Precio</label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.precio" name="precio" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label">Precio Tachado</label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.precio_tachado" name="precio_tachado" />
+          </div>
+        </div>
+
+
+
+      </form>
+
+      <button type="submit" form="formAnuncio" color="primary" mat-raised-button>Crear</button>
+
+    </div>
+
+
+    <div class="col-12 col-md-6">
+      <h3 class="text-center">Previsualización</h3>
+
+      <app-anuncio [anuncio]="anuncio"></app-anuncio>
+
+    </div>
+
+  </div>
+
+
 </div>

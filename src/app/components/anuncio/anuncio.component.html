@@ -1,3 +1,42 @@
-<p>
-  anuncio works!
-</p>
+<mat-card>
+
+  <mat-card-header>
+    <div mat-card-avatar style="background-size:cover" [style.background-image]="'url(' + (anuncio.avatar_src || 'assets/imgs/logo.png' ) + ')' "></div>
+    <mat-card-title>{{anuncio.titulo}}</mat-card-title>
+    <mat-card-subtitle>{{anuncio.fecha_publicacion}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image [src]="(anuncio.img_src|| 'assets/imgs/pants.jpg')">
+
+  <mat-card-content class="text-center">
+    <p>{{anuncio.descripcion}}</p>
+    <h3 *ngIf="anuncio.mostrar_precios">
+      <span class="text-danger" style="text-decoration:line-through">{{anuncio.precio_tachado}}</span>
+      <span>{{anuncio.precio}}</span>
+    </h3>
+    <!-- <h3>{{anuncio.precio}}</h3> -->
+    <p>{{anuncio.categoria}}</p>
+
+  </mat-card-content>
+
+  <!--     <ion-row>
+  <ion-col>
+    <button ion-button icon-left clear small>
+      <ion-icon name="thumbs-up"></ion-icon>
+      <div>12 Likes</div>
+    </button>
+  </ion-col>
+  <ion-col>
+    <button ion-button icon-left clear small>
+      <ion-icon name="text"></ion-icon>
+      <div>4 Comments</div>
+    </button>
+  </ion-col>
+  <ion-col center text-center>
+    <ion-note>
+      11h ago
+    </ion-note>
+  </ion-col>
+</ion-row> -->
+
+</mat-card>

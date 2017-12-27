@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,6 +22,7 @@ import { CrearAnuncioComponent } from './components/crear-anuncio/crear-anuncio.
 import { PerfilComponent } from './components/perfil/perfil.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularMaterialModule
