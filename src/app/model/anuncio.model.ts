@@ -14,6 +14,7 @@ export class Anuncio {
     
     es_oferta?: boolean;
     mostrar_precios?: boolean;
+    mostrar_agregar?:boolean;
 
 
 

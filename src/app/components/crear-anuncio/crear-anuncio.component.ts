@@ -14,6 +14,18 @@ export class CrearAnuncioComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    /*     let now = new Date();
+        let dd = now.getDate();
+        let mm = now.getMonth() + 1; // Enero es 0
+        let yyyy = now.getFullYear();
+        let today = yyyy + "-" + mm + "-" + dd; */
+
+    let utc = new Date().toJSON().slice(0, 10);
+
+    this.anuncio.fecha_publicacion = utc;
+
+
+
   }
 
   createAnuncio(form: NgForm) {

@@ -3,7 +3,7 @@
   <mat-card-header>
     <div mat-card-avatar style="background-size:cover" [style.background-image]="'url(' + (anuncio.avatar_src || 'assets/imgs/logo.png' ) + ')' "></div>
     <mat-card-title>{{anuncio.titulo}}</mat-card-title>
-    <mat-card-subtitle>{{anuncio.fecha_publicacion}}</mat-card-subtitle>
+    <mat-card-subtitle>{{anuncio.fecha_publicacion|date:'longDate'}}</mat-card-subtitle>
   </mat-card-header>
 
   <img mat-card-image [src]="(anuncio.img_src|| 'assets/imgs/pants.jpg')">
@@ -18,7 +18,11 @@
     <p>{{anuncio.categoria}}</p>
 
   </mat-card-content>
-
+  <mat-card-actions class="text-right" *ngIf="anuncio.mostrar_agregar">
+    <button type="button" mat-button>Agregar
+      <i class="fa fa-shopping-cart"></i>
+    </button>
+  </mat-card-actions>
   <!--     <ion-row>
   <ion-col>
     <button ion-button icon-left clear small>
