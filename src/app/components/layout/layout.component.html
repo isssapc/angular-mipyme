@@ -1,3 +1,50 @@
-<p>
-  layout works!
-</p>
+<div class="app-container" [class.app-is-mobile]="mobileQuery.matches">
+
+  <mat-toolbar color="primary" class="main-toolbar">
+
+    <button mat-icon-button (click)="navLeft.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <a class="none-decoration" [routerLink]="['/tablero']">Inmobiliaria</a>
+
+    <span class="spacer"></span>
+
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <span class="d-none d-sm-inline">{{username}}</span>
+      <mat-icon>person</mat-icon>
+    </button>
+
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item routerLink="/perfil"> Perfil </button>
+      <button mat-menu-item (click)="logout()"> Cerrar sesión </button>
+    </mat-menu>
+
+  </mat-toolbar>
+
+
+
+
+
+  <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+    <mat-sidenav #navLeft class="app-sidenav-start" mode="over" align="start" opened="false"
+    [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+
+      <app-menu [sidenav]="navLeft"></app-menu>
+
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+
+
+</div>
