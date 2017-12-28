@@ -1,43 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { log } from 'util';
 import { MatDialog } from '@angular/material';
+import { NgForm } from '@angular/forms';
 import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
 
 @Component({
-  selector: 'app-crear-anuncio',
-  templateUrl: './crear-anuncio.component.html',
-  styleUrls: ['./crear-anuncio.component.scss']
+  selector: 'app-editar-anuncio',
+  templateUrl: './editar-anuncio.component.html',
+  styleUrls: ['./editar-anuncio.component.scss']
 })
-export class CrearAnuncioComponent implements OnInit {
+export class EditarAnuncioComponent implements OnInit {
 
   anuncio: any = {};
   selectedOption: string;
+
 
   constructor(
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    /*     let now = new Date();
-        let dd = now.getDate();
-        let mm = now.getMonth() + 1; // Enero es 0
-        let yyyy = now.getFullYear();
-        let today = yyyy + "-" + mm + "-" + dd; */
-
     let utc = new Date().toJSON().slice(0, 10);
 
     this.anuncio.fecha_publicacion = utc;
-
-
-
   }
 
   createAnuncio(form: NgForm) {
     console.log("createAnuncio");
     console.log("form.value", form.value);
-
-
   }
 
   agregarImagen() {
@@ -45,12 +34,13 @@ export class CrearAnuncioComponent implements OnInit {
     console.log("Imagen");
     let dialogRef = this.dialog.open(AgregarImagenDialogoComponent, {
       data: {
-       
+
       }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });
   }
+
 
 }

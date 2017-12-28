@@ -17,6 +17,12 @@
     <!-- <h3>{{anuncio.precio}}</h3> -->
     <p>{{anuncio.categoria}}</p>
 
+    <div class="mt-2">
+      <button class="btn btn-outline-secondary" (click)="editarAnuncio()">Editar</button>      
+      <button class="btn btn-outline-secondary" (click)="delAnuncio()">Eliminar</button>
+
+    </div>
+
   </mat-card-content>
   <mat-card-actions class="text-right" *ngIf="anuncio.mostrar_agregar">
     <button type="button" mat-button>Agregar
