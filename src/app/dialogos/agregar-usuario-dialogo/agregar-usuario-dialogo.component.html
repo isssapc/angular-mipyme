@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>Nuevo Usuario</h1>
+<div mat-dialog-content class="py-1">
+
+
+  <form #formCreateUsuario="ngForm" id="formCreateUsuario" (ngSubmit)="createUsuario()">
+    <div class="form-group row">
+      <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+      <div class="col-sm-9">
+        <input class="form-control" [class.is-invalid]="nombre.invalid && (nombre.dirty || nombre.touched)" type="text" #nombre="ngModel"
+          name="nombre" id="nombre" [(ngModel)]="usuario.nombre" required>
+        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="invalid-feedback">Escriba un nombre válido</div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="email" class="col-sm-3 col-form-label">Email</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="email" #email="ngModel" name="email" id="email" [(ngModel)]="usuario.email" [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+          required email>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">Escriba un email válido</div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="password">Password</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" #password="ngModel" name="password" id="password" [(ngModel)]="usuario.password"
+          [class.is-invalid]="password.invalid && (password.dirty || password.touched)" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">Escriba un password válido</div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label" for="confirmacion">Confirmar</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" #confirmar="ngModel" [(ngModel)]="confirmacion" name="confirmacion" id="confirmacion"
+          [class.is-invalid]="confirmar.invalid && (confirmar.dirty || confirmar.touched)">
+        <div *ngIf="confirmar.invalid && (confirmar.dirty || confirmar.touched)" class="invalid-feedback">Error de confirmación</div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="id_rol" class="col-sm-3 col-form-label">Rol</label>
+      <div class="col-sm-9">
+        <select class="form-control" #id_rol="ngModel" id="id_rol" name="id_rol" [(ngModel)]="usuario.id_rol" [class.is-invalid]="id_rol.invalid && (id_rol.dirty || id_rol.touched)"
+          required>
+          <option value="">Seleccionar...</option>
+          <option *ngFor="let rol of data.roles" [value]="rol.id_rol">{{rol.nombre}}</option>
+        </select>
+        <div *ngIf="id_rol.invalid && (id_rol.dirty || id_rol.touched)" class="invalid-feedback">Seleccione un rol</div>
+      </div>
+    </div>
+
+
+
+
+  </form>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">CERRAR</button>
+  <button type="submit" form="formCreateUsuario" color="primary" mat-button [disabled]="!formCreateUsuario.valid">CREAR</button>
+</div>
