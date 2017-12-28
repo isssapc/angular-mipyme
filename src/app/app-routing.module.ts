@@ -8,6 +8,8 @@ import { TableroComponent } from './components/tablero/tablero.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { AnunciosComponent } from './components/anuncios/anuncios.component';
 import { CrearAnuncioComponent } from './components/crear-anuncio/crear-anuncio.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anuncio.component';
 
 const routes: Routes = [
 
@@ -24,6 +26,8 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'anuncios', component: AnunciosComponent },
       { path: 'crear-anuncio', component: CrearAnuncioComponent },
+      { path: 'perfil', component: PerfilComponent },
+      { path: 'editar-anuncio', component: EditarAnuncioComponent },
     ]
   },
   //not found

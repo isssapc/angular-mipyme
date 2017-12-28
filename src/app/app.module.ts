@@ -20,6 +20,11 @@ import { AnuncioComponent } from './components/anuncio/anuncio.component';
 import { AnunciosComponent } from './components/anuncios/anuncios.component';
 import { CrearAnuncioComponent } from './components/crear-anuncio/crear-anuncio.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { AgregarImagenDialogoComponent } from './dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
+import { AgregarUsuarioDialogoComponent } from './dialogos/agregar-usuario-dialogo/agregar-usuario-dialogo.component';
+import { ConfimarBorradoDialogoComponent } from './dialogos/confimar-borrado-dialogo/confimar-borrado-dialogo.component';
+import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anuncio.component';
+import { EditarUsuarioDialogoComponent } from './dialogos/editar-usuario-dialogo/editar-usuario-dialogo.component';
 
 
 
@@ -34,7 +39,12 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     AnuncioComponent,
     AnunciosComponent,
     CrearAnuncioComponent,
-    PerfilComponent
+    PerfilComponent,
+    AgregarImagenDialogoComponent,
+    AgregarUsuarioDialogoComponent,
+    ConfimarBorradoDialogoComponent,
+    EditarAnuncioComponent,
+    EditarUsuarioDialogoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +53,14 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     AppRoutingModule,
     AngularMaterialModule
   ],
+
+  entryComponents: [
+    AgregarImagenDialogoComponent,
+    AgregarUsuarioDialogoComponent,
+    ConfimarBorradoDialogoComponent,
+    EditarUsuarioDialogoComponent
+  ],
+
   providers: [
     AuthService
   ],
