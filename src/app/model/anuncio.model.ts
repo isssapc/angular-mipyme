@@ -1,7 +1,7 @@
 export class Anuncio {
 
 
-    id_anuncio?: string;
+    id?: string;
 
     titulo?: string;
     descripcion?: string;

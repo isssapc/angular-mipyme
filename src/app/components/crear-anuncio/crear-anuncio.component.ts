@@ -17,7 +17,7 @@ export class CrearAnuncioComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private anuncioSrv:AnuncioService
+    private anuncioSrv: AnuncioService
   ) { }
 
   ngOnInit() {
@@ -39,8 +39,12 @@ export class CrearAnuncioComponent implements OnInit {
     console.log("createAnuncio");
     console.log("form.value", form.value);
 
-    this.anuncioSrv.createAnuncio(form.value);
-    form.reset();
+    this.anuncioSrv.createAnuncio(form.value).then(ref => {
+      console.log("createAnuncio", ref.id);
+      form.reset();
+
+    });
+    
 
   }
 
@@ -49,7 +53,7 @@ export class CrearAnuncioComponent implements OnInit {
     console.log("Imagen");
     let dialogRef = this.dialog.open(AgregarImagenDialogoComponent, {
       data: {
-       
+
       }
     });
     dialogRef.afterClosed().subscribe(result => {

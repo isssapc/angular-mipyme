@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Anuncio } from '../../model/anuncio.model';
 import { AnuncioService } from '../../services/anuncio.service';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { ConfirmarBorradoDialogoComponent } from '../../dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
 
 @Component({
   selector: 'app-anuncios',
@@ -9,7 +11,7 @@ import { AnuncioService } from '../../services/anuncio.service';
 })
 export class AnunciosComponent implements OnInit {
 
-  anuncios: Anuncio[] =[]; /* [
+  anuncios: Anuncio[] = []; /* [
     {
       titulo: "Pants Deportivos",
       descripcion: "Alta resistencia e ideal para deportes",
@@ -40,18 +42,57 @@ export class AnunciosComponent implements OnInit {
   ]; */
 
   constructor(
-    private anuncioSrv: AnuncioService
+    private anuncioSrv: AnuncioService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
 
   ) { }
 
   ngOnInit() {
 
-    this.anuncioSrv.getAnuncios()
+    this.anuncioSrv.getSnapshotAnuncios()
       .subscribe(anuncios => {
         this.anuncios = anuncios;
         console.log("getAnuncios", anuncios);
 
       });
+
+  }
+
+  delAnuncio(anuncio: Anuncio) {
+    console.log("delAnuncio", anuncio);
+
+
+    let dialogRef = this.dialog.open(ConfirmarBorradoDialogoComponent, {
+      data: {
+
+        title: "Eliminar Anuncio",
+        content: `¿Desea eliminar el anuncio con título: ${anuncio.titulo}?`
+
+      },
+      width: "500px"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.anuncioSrv.delAnuncio(anuncio.id).then(() => {
+
+          this.snackBar.open("Anuncio Eliminado", "Cerrar", {
+            duration: 2000
+          });
+
+        });
+
+
+
+
+      }
+
+
+
+
+    });
 
   }
 

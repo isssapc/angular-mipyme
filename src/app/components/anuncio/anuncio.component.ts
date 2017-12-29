@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Anuncio } from '../../model/anuncio.model';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { EditarAnuncioComponent } from '../editar-anuncio/editar-anuncio.component';
 import { Router } from '@angular/router';
-import { ConfirmarBorradoDialogoComponent } from '../../dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
+
 
 @Component({
   selector: 'app-anuncio',
@@ -12,12 +10,12 @@ import { ConfirmarBorradoDialogoComponent } from '../../dialogos/confirmar-borra
 })
 export class AnuncioComponent implements OnInit {
   @Input("anuncio") anuncio: Anuncio;
+  @Output() delete: EventEmitter<any> = new EventEmitter();
   selectedOption: string;
 
   constructor(
     private router: Router,
-    public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    
   ) { }
 
   ngOnInit() {
@@ -27,35 +25,9 @@ export class AnuncioComponent implements OnInit {
     this.router.navigate(["/editar-anuncio"]);
   }
 
-  delAnuncio(): void {
+  delAnuncio() {
 
-    let dialogRef = this.dialog.open(ConfirmarBorradoDialogoComponent, {
-      data: {
-
-        title: "Eliminar Anuncio",
-        content: `¿Desea eliminar el anuncio?`
-
-      },
-      width: "500px"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-
-      if (result) {
-
-        if (result.error) {
-          this.snackBar.open(result.error, "Cerrar", {
-            duration: 2000
-          });
-        } else {
-          this.snackBar.open("Usuario Creado", "Cerrar", {
-            duration: 2000
-          });
-        }
-
-      }
-
-
-    });
+    this.delete.emit(null);
 
   }
 
