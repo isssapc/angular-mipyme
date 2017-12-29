@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { log } from 'util';
 import { MatDialog } from '@angular/material';
 import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
+import { AnuncioService } from '../../services/anuncio.service';
 
 @Component({
   selector: 'app-crear-anuncio',
@@ -15,7 +16,8 @@ export class CrearAnuncioComponent implements OnInit {
   selectedOption: string;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private anuncioSrv:AnuncioService
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,8 @@ export class CrearAnuncioComponent implements OnInit {
     console.log("createAnuncio");
     console.log("form.value", form.value);
 
+    this.anuncioSrv.createAnuncio(form.value);
+    form.reset();
 
   }
 

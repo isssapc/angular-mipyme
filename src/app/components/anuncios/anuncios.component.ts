@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Anuncio } from '../../model/anuncio.model';
+import { AnuncioService } from '../../services/anuncio.service';
 
 @Component({
   selector: 'app-anuncios',
@@ -8,7 +9,7 @@ import { Anuncio } from '../../model/anuncio.model';
 })
 export class AnunciosComponent implements OnInit {
 
-  anuncios: Anuncio[] = [
+  anuncios: Anuncio[] =[]; /* [
     {
       titulo: "Pants Deportivos",
       descripcion: "Alta resistencia e ideal para deportes",
@@ -36,11 +37,22 @@ export class AnunciosComponent implements OnInit {
       categoria: "Promociones",
       avatar_src: "assets/imgs/logo.png"
     }
-  ];
+  ]; */
 
-  constructor() { }
+  constructor(
+    private anuncioSrv: AnuncioService
+
+  ) { }
 
   ngOnInit() {
+
+    this.anuncioSrv.getAnuncios()
+      .subscribe(anuncios => {
+        this.anuncios = anuncios;
+        console.log("getAnuncios", anuncios);
+
+      });
+
   }
 
 }
