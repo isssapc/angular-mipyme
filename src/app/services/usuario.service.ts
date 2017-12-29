@@ -21,7 +21,7 @@ export class UsuarioService {
   }
 
 
-  getSnapshotAnuncios() {
+  getSnapshotUsuarios() {
     return this.usuarios.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data();
@@ -32,7 +32,7 @@ export class UsuarioService {
   }
 
 
-  getSnapshotAnuncio(id: string) {
+  getSnapshotUsuario(id: string) {
     return this.usuarios.doc(id).snapshotChanges().map(action => {
       const data = action.payload.data();
       const id = action.payload.id;

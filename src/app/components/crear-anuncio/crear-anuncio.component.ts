@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { log } from 'util';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
 import { AnuncioService } from '../../services/anuncio.service';
 
@@ -17,7 +17,8 @@ export class CrearAnuncioComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private anuncioSrv: AnuncioService
+    private anuncioSrv: AnuncioService,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -42,9 +43,12 @@ export class CrearAnuncioComponent implements OnInit {
     this.anuncioSrv.createAnuncio(form.value).then(ref => {
       console.log("createAnuncio", ref.id);
       form.reset();
+      this.snackBar.open("Anuncio Creado", "Cerrar", {
+        duration: 2000
+      });
 
     });
-    
+
 
   }
 

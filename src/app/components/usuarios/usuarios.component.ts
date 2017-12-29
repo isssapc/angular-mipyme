@@ -23,9 +23,9 @@ export class UsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuarioSrv.getUsuarios()
-      .subscribe(res => {
-        this.usuarios = res;
+    this.usuarioSrv.getSnapshotUsuarios()
+      .subscribe(usuarios => {
+        this.usuarios = usuarios;
         this.loading = false;
       },
       (error: any) => { },
@@ -65,10 +65,11 @@ export class UsuariosComponent implements OnInit {
 
   editarUsuario(usuario) {
 
+    let copia = Usuario.copiar(usuario);
 
     let dialogRef = this.dialog.open(EditarUsuarioDialogoComponent, {
       data: {
-        usuario: usuario,
+        usuario: copia,
       }
     });
 
@@ -76,24 +77,43 @@ export class UsuariosComponent implements OnInit {
 
       if (result === true) {
         this.loading = true;
+
+        this.usuarioSrv.updateUsuario(copia)
+          .then(() => {
+
+            this.loading = false;
+            this.snackBar.open("Usuario Actualizado", "Cerrar", {
+              duration: 2000
+            });
+
+          });
+
+
       }
     });
   }
 
-  delUsuario() {
+  delUsuario(usuario: Usuario) {
 
 
     let dialogRef = this.dialog.open(ConfirmarBorradoDialogoComponent, {
       data: {
         title: "Eliminar usuario",
-        content: `¿Desea eliminar al usuario?`
-      }
+        content: `¿Desea eliminar al usuario: ${usuario.nombre}?`
+      },
+      width: "500px"
     });
 
     dialogRef.afterClosed().subscribe(result => {
 
       if (result === true) {
 
+        this.usuarioSrv.delUsuario(usuario.id).then(() => {
+
+          this.snackBar.open("Usuario Eliminado", "Cerrar", {
+            duration: 2000
+          });
+        });
 
       }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
 import { Anuncio } from '../../model/anuncio.model';
@@ -21,7 +21,8 @@ export class EditarAnuncioComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private anuncioSrv: AnuncioService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -41,8 +42,11 @@ export class EditarAnuncioComponent implements OnInit {
     console.log("createAnuncio");
     console.log("form.value", form.value);
 
-    this.anuncioSrv.updateAnuncio(this.anuncio).then((data) => {
-      console.log("el anuncio se ha actualizado", data);
+    this.anuncioSrv.updateAnuncio(this.anuncio).then(() => {
+      console.log("el anuncio se ha actualizado");
+      this.snackBar.open("Anuncio Actualizado", "Cerrar", {
+        duration: 2000
+      });
 
     });
 
