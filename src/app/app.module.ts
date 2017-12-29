@@ -22,9 +22,9 @@ import { CrearAnuncioComponent } from './components/crear-anuncio/crear-anuncio.
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AgregarImagenDialogoComponent } from './dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
 import { AgregarUsuarioDialogoComponent } from './dialogos/agregar-usuario-dialogo/agregar-usuario-dialogo.component';
-import { ConfimarBorradoDialogoComponent } from './dialogos/confimar-borrado-dialogo/confimar-borrado-dialogo.component';
 import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anuncio.component';
 import { EditarUsuarioDialogoComponent } from './dialogos/editar-usuario-dialogo/editar-usuario-dialogo.component';
+import { ConfirmarBorradoDialogoComponent } from './dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
 
 
 //environment
@@ -49,10 +49,10 @@ import { AnuncioService } from './services/anuncio.service';
     CrearAnuncioComponent,
     PerfilComponent,
     AgregarImagenDialogoComponent,
-    AgregarUsuarioDialogoComponent,
-    ConfimarBorradoDialogoComponent,
+    AgregarUsuarioDialogoComponent,   
     EditarAnuncioComponent,
-    EditarUsuarioDialogoComponent
+    EditarUsuarioDialogoComponent,
+    ConfirmarBorradoDialogoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +67,7 @@ import { AnuncioService } from './services/anuncio.service';
   entryComponents: [
     AgregarImagenDialogoComponent,
     AgregarUsuarioDialogoComponent,
-    ConfimarBorradoDialogoComponent,
+    ConfirmarBorradoDialogoComponent,
     EditarUsuarioDialogoComponent
   ],
 
