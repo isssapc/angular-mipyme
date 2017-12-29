@@ -21,11 +21,47 @@ export class UsuarioService {
   }
 
 
+  getSnapshotAnuncios() {
+    return this.usuarios.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data } as Usuario;
+      });
+    });
+  }
+
+
+  getSnapshotAnuncio(id: string) {
+    return this.usuarios.doc(id).snapshotChanges().map(action => {
+      const data = action.payload.data();
+      const id = action.payload.id;
+      return { id, ...data } as Usuario;
+    });
+  }
+
+
   createUsuario(usuario) {
 
     console.log("usuario", usuario);
 
     return this.usuarios.add(usuario);
+  }
+
+  delUsuario(id: string) {
+
+    // let usuario: AngularFirestoreDocument<any>;
+
+    const usuario = this.usuarios.doc(id);
+    return usuario.delete();
+  }
+
+
+  updateUsuario(usuario) {
+    const id = usuario.id;
+    delete usuario.id;
+    const usuarioRef = this.usuarios.doc(id);
+    return usuarioRef.update(usuario);
   }
 
 }
