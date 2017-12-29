@@ -27,6 +27,14 @@ import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anunc
 import { EditarUsuarioDialogoComponent } from './dialogos/editar-usuario-dialogo/editar-usuario-dialogo.component';
 
 
+//environment
+import {  environment } from "../environments/environment";
+
+//firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AnuncioService } from './services/anuncio.service';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +59,9 @@ import { EditarUsuarioDialogoComponent } from './dialogos/editar-usuario-dialogo
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
 
   entryComponents: [
@@ -62,7 +72,8 @@ import { EditarUsuarioDialogoComponent } from './dialogos/editar-usuario-dialogo
   ],
 
   providers: [
-    AuthService
+    AuthService,
+    AnuncioService
   ],
   bootstrap: [AppComponent]
 })
