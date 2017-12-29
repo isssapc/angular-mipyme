@@ -16,7 +16,7 @@ export class Anuncio {
     mostrar_precios?: boolean;
     mostrar_agregar?: boolean;
 
-    public static copiar(anuncio: Anuncio): Anuncio {
+   /*  public static copiar(anuncio: Anuncio): Anuncio {
         let copia = new Anuncio();
 
         copia.titulo = anuncio.titulo;
@@ -53,7 +53,7 @@ export class Anuncio {
 
 
     }
-
+ */
 
 
 }

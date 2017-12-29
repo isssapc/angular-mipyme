@@ -5,7 +5,7 @@ export class Usuario {
     email?: string;
     rol?: string;
 
-    public static copiar(usuario: Usuario): Usuario {
+    /* public static copiar(usuario: Usuario): Usuario {
         let copia = new Usuario();
 
         copia.nombre = usuario.nombre;
@@ -26,5 +26,5 @@ export class Usuario {
 
         
     }
-
+ */
 }

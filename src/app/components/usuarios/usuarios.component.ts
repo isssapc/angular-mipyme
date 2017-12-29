@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AgregarUsuarioDialogoComponent } from '../../dialogos/agregar-usuario-dialogo/agregar-usuario-dialogo.component';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { EditarUsuarioDialogoComponent } from '../../dialogos/editar-usuario-dialogo/editar-usuario-dialogo.component';
+import { ConfirmarBorradoDialogoComponent } from '../../dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
+import { Usuario } from '../../model/usuario.model';
 
 @Component({
   selector: 'app-usuarios',
@@ -9,6 +11,8 @@ import { EditarUsuarioDialogoComponent } from '../../dialogos/editar-usuario-dia
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
+
+  usuarios: Usuario[];
 
   constructor(
     public snackBar: MatSnackBar,
@@ -72,6 +76,27 @@ export class UsuariosComponent implements OnInit {
 
       }
 
+
+    });
+
+  }
+
+  delUsuario() {
+
+
+    let dialogRef = this.dialog.open(ConfirmarBorradoDialogoComponent, {
+      data: {
+        title: "Eliminar usuario",
+        content: `¿Desea eliminar al usuario?`
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result === true) {     
+
+
+      }
 
     });
 

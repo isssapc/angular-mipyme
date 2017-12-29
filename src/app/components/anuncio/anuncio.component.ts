@@ -3,7 +3,7 @@ import { Anuncio } from '../../model/anuncio.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditarAnuncioComponent } from '../editar-anuncio/editar-anuncio.component';
 import { Router } from '@angular/router';
-import { ConfimarBorradoDialogoComponent } from '../../dialogos/confimar-borrado-dialogo/confimar-borrado-dialogo.component';
+import { ConfirmarBorradoDialogoComponent } from '../../dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
 
 @Component({
   selector: 'app-anuncio',
@@ -29,7 +29,7 @@ export class AnuncioComponent implements OnInit {
 
   delAnuncio(): void {
 
-    let dialogRef = this.dialog.open(ConfimarBorradoDialogoComponent, {
+    let dialogRef = this.dialog.open(ConfirmarBorradoDialogoComponent, {
       data: {
 
         title: "Eliminar Anuncio",
