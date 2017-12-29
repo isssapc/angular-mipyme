@@ -10,7 +10,7 @@
     <div class="col-12 col-md-6">
       <h3 class="text-center">Configuración</h3>
 
-      <form #formAnuncio="ngForm" id="formAnuncio" (ngSubmit)="createAnuncio(formAnuncio)">
+      <form #formAnuncio="ngForm" id="formAnuncio" (ngSubmit)="updateAnuncio(formAnuncio)">
 
         <div class="form-group row">
           <label class="col-lg-3 col-form-label">Título del anuncio</label>
@@ -96,7 +96,7 @@
 
       </form>
 
-      <button type="submit" form="formAnuncio" color="primary" mat-raised-button>Crear</button>
+      <button type="submit" form="formAnuncio" color="primary" mat-raised-button>Actualizar</button>
 
     </div>
 

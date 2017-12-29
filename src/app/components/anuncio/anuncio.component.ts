@@ -15,14 +15,14 @@ export class AnuncioComponent implements OnInit {
 
   constructor(
     private router: Router,
-    
+
   ) { }
 
   ngOnInit() {
   }
 
   editarAnuncio() {
-    this.router.navigate(["/editar-anuncio"]);
+    this.router.navigate(["/editar-anuncio", this.anuncio.id]);
   }
 
   delAnuncio() {

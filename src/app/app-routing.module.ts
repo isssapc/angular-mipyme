@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: 'anuncios', component: AnunciosComponent },
       { path: 'crear-anuncio', component: CrearAnuncioComponent },
       { path: 'perfil', component: PerfilComponent },
-      { path: 'editar-anuncio', component: EditarAnuncioComponent },
+      { path: 'editar-anuncio/:id', component: EditarAnuncioComponent },
     ]
   },
   //not found
