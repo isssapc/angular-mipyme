@@ -45,7 +45,8 @@
         <select class="form-control" #id_rol="ngModel" id="id_rol" name="id_rol" [(ngModel)]="usuario.id_rol" [class.is-invalid]="id_rol.invalid && (id_rol.dirty || id_rol.touched)"
           required>
           <option value="">Seleccionar...</option>
-          <option *ngFor="let rol of data.roles" [value]="rol.id_rol">{{rol.nombre}}</option>
+          <option>Administrador</option>
+          <!-- *ngFor="let rol of data.roles" [value]="rol.id_rol" -->
         </select>
         <div *ngIf="id_rol.invalid && (id_rol.dirty || id_rol.touched)" class="invalid-feedback">Seleccione un rol</div>
       </div>

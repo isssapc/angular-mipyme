@@ -19,12 +19,17 @@
     <div class="form-group row">
       <label for="id_rol" class="col-sm-3 col-form-label">Rol</label>
       <div class="col-sm-9">
-        <select class="form-control" id="id_rol" name="id_rol" [(ngModel)]="usuario.id_rol">
-          <option [value]="rol.id_rol" *ngFor="let rol of roles">{{rol.nombre}}</option>                 
+        <select class="form-control" #id_rol="ngModel" id="id_rol" name="id_rol" [(ngModel)]="usuario.id_rol" [class.is-invalid]="id_rol.invalid && (id_rol.dirty || id_rol.touched)"
+          required>
+          <option value="">Seleccionar...</option>
+          <option>Administrador</option>
+          <!-- *ngFor="let rol of data.roles" [value]="rol.id_rol" -->
         </select>
+        <div *ngIf="id_rol.invalid && (id_rol.dirty || id_rol.touched)" class="invalid-feedback">Seleccione un rol</div>
       </div>
     </div>
-    <!--  <div>data {{data|json}}</div> -->
+
+   <!--  <div>data {{data|json}}</div> -->
 
   </form>
 </div>

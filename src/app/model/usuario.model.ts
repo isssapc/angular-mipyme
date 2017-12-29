@@ -3,7 +3,8 @@ export class Usuario {
     id_usuario?: string;
     nombre?: string;
     email?: string;
-    rol?: string;
+    id_rol?: string;
+    password?:string;
 
     /* public static copiar(usuario: Usuario): Usuario {
         let copia = new Usuario();
