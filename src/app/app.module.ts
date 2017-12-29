@@ -34,6 +34,7 @@ import {  environment } from "../environments/environment";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AnuncioService } from './services/anuncio.service';
+import { UsuarioService } from './services/usuario.service';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { AnuncioService } from './services/anuncio.service';
 
   providers: [
     AuthService,
-    AnuncioService
+    AnuncioService,
+    UsuarioService
   ],
   bootstrap: [AppComponent]
 })
