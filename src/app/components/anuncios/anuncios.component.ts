@@ -81,17 +81,8 @@ export class AnunciosComponent implements OnInit {
           this.snackBar.open("Anuncio Eliminado", "Cerrar", {
             duration: 2000
           });
-
         });
-
-
-
-
       }
-
-
-
-
     });
 
   }
