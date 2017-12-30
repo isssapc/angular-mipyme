@@ -16,6 +16,13 @@ import { MenuComponent } from './components/menu/menu.component';
 
 // servicios
 import { AuthService } from './services/auth.service';
+import { AnuncioService } from './services/anuncio.service';
+import { UsuarioService } from './services/usuario.service';
+import { UploadService } from './services/upload.service';
+
+
+
+// componentes
 import { AnuncioComponent } from './components/anuncio/anuncio.component';
 import { AnunciosComponent } from './components/anuncios/anuncios.component';
 import { CrearAnuncioComponent } from './components/crear-anuncio/crear-anuncio.component';
@@ -33,8 +40,7 @@ import {  environment } from "../environments/environment";
 //firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AnuncioService } from './services/anuncio.service';
-import { UsuarioService } from './services/usuario.service';
+
 
 
 @NgModule({
@@ -75,7 +81,8 @@ import { UsuarioService } from './services/usuario.service';
   providers: [
     AuthService,
     AnuncioService,
-    UsuarioService
+    UsuarioService,
+    UploadService
   ],
   bootstrap: [AppComponent]
 })

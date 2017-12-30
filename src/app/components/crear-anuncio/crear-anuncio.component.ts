@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { log } from 'util';
+
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
 import { AnuncioService } from '../../services/anuncio.service';
+import { FileItem } from '../../model/file-item';
+import { UploadService } from '../../services/upload.service';
+
+
 
 @Component({
   selector: 'app-crear-anuncio',
@@ -15,10 +19,13 @@ export class CrearAnuncioComponent implements OnInit {
   anuncio: any = {};
   selectedOption: string;
 
+  fileItems: FileItem[] = [];
+
   constructor(
     public dialog: MatDialog,
     private anuncioSrv: AnuncioService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private uploadSrv:UploadService
   ) { }
 
   ngOnInit() {
@@ -63,6 +70,40 @@ export class CrearAnuncioComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });
+  }
+
+  uploadImage(){
+
+
+    
+  }
+
+
+  onChangeFile(event: Event, fileList: FileList, anuncio) {
+    console.log("onChange");
+
+    //console.log("onChangeFile", event, fileList);
+
+    if (fileList && fileList[0]) {
+
+      this.fileItems.push(new FileItem(fileList[0]));
+
+
+
+
+
+      /*     let reader = new FileReader();
+    
+          reader.onload = function (e: any) {
+    
+            //img.src=e.target.result;
+            anuncio.img_src = e.target.result;
+    
+          }
+    
+          reader.readAsDataURL(fileList[0]); */
+    }
+
   }
 
 }
