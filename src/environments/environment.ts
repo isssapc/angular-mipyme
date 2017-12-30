@@ -10,7 +10,7 @@ export const environment = {
     authDomain: "mipymeapp.firebaseapp.com",
     databaseURL: "https://mipymeapp.firebaseio.com",
     projectId: "mipymeapp",
-    storageBucket: "",
+    storageBucket: "mipymeapp.appspot.com",
     messagingSenderId: "183654207423"
   }
 };

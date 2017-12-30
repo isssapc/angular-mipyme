@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from "firebase";
+import { storage } from 'firebase/app';
 import { FileItem } from '../model/file-item';
+
 
 @Injectable()
 export class UploadService {
@@ -14,35 +16,63 @@ export class UploadService {
   doUpload(archivos: FileItem[]) {
     console.log("archivos", archivos);
 
-    let storageRef = firebase.storage().ref();
+    if (archivos.length > 0) {
 
-    for (let fileItem of archivos) {
+      let promesa = new Promise((resolve, reject) => {
 
-      fileItem.isUploading = true;
+        let urls: string[] = [];
 
-      let uploadTask: firebase.storage.UploadTask =
-        storageRef.child(this.CARPETA_IMAGENES + '/' + fileItem.filename).put(fileItem.file);
+        let storageRef = firebase.storage().ref();
 
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        for (let fileItem of archivos) {
 
-        (snapshot: firebase.storage.UploadTaskSnapshot) => fileItem.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
-        (error) => {
-          console.log("Error al subir ", error);
-          fileItem.error = error;
-        },
-        () => {
+          fileItem.isUploading = true;
 
-          fileItem.url = uploadTask.snapshot.downloadURL;
-          //fileItem.isUploading = false;
-          //fileItem.complete=true;
-          this.createImage({ nombre: fileItem.filename, url: fileItem.url }).then(ref => {
+          let uploadTask: firebase.storage.UploadTask =
+            storageRef.child(this.CARPETA_IMAGENES + '/' + fileItem.filename).put(fileItem.file);
 
-            console.log("referencia", ref);
-            fileItem.isUploading = false;
-            fileItem.complete = true;
-          });
+          uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
 
-        })
+            (snapshot: firebase.storage.UploadTaskSnapshot) => fileItem.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+            (error) => {
+              console.log("Error al subir ", error);
+              fileItem.error = error;
+            },
+            () => {
+
+              fileItem.url = uploadTask.snapshot.downloadURL;
+              //fileItem.isUploading = false;
+              //fileItem.complete=true;
+              this.createImage({ nombre: fileItem.filename, url: fileItem.url }).then(ref => {
+
+                ref.get().then(doc => {
+
+                  console.log("doc", doc.data());
+
+                  //para devolver la promesa con la url
+                  urls.push(doc.data().url);
+                  resolve(urls);
+
+                });
+                console.log("referencia", ref);
+                fileItem.isUploading = false;
+                fileItem.complete = true;
+              });
+
+            })
+
+
+        }
+
+        
+
+
+      });
+
+      return promesa;
+
+
+
 
 
     }

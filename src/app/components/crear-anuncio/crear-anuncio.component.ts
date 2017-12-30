@@ -6,6 +6,7 @@ import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dia
 import { AnuncioService } from '../../services/anuncio.service';
 import { FileItem } from '../../model/file-item';
 import { UploadService } from '../../services/upload.service';
+import { log } from 'util';
 
 
 
@@ -25,7 +26,7 @@ export class CrearAnuncioComponent implements OnInit {
     public dialog: MatDialog,
     private anuncioSrv: AnuncioService,
     public snackBar: MatSnackBar,
-    private uploadSrv:UploadService
+    private uploadSrv: UploadService
   ) { }
 
   ngOnInit() {
@@ -46,9 +47,12 @@ export class CrearAnuncioComponent implements OnInit {
   createAnuncio(form: NgForm) {
     console.log("createAnuncio");
     console.log("form.value", form.value);
+    console.log("anuncio", this.anuncio);
 
-    this.anuncioSrv.createAnuncio(form.value).then(ref => {
+
+    this.anuncioSrv.createAnuncio(this.anuncio).then(ref => {
       console.log("createAnuncio", ref.id);
+      this.anuncio = {};
       form.reset();
       this.snackBar.open("Anuncio Creado", "Cerrar", {
         duration: 2000
@@ -72,10 +76,17 @@ export class CrearAnuncioComponent implements OnInit {
     });
   }
 
-  uploadImage(){
+  uploadImage() {
+
+    console.log("uploadImage");
+
+    this.uploadSrv.doUpload(this.fileItems).then(urls => {
+      console.log("termina el upload", urls[0]);
+      this.anuncio.img_src = urls[0];
+
+    });
 
 
-    
   }
 
 
