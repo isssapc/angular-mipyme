@@ -7,6 +7,7 @@ export class Anuncio {
     descripcion?: string;
     fecha_publicacion?: string;
     precio?: string;
+    precio_tachado?:string;
     categoria?: string;
 
     img_src?: string;

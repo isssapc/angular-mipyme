@@ -33,4 +33,9 @@ export class LayoutComponent implements OnInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  logout(){
+    console.log("logout");
+    
+  }
+
 }

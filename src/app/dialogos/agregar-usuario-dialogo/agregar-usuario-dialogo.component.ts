@@ -13,6 +13,7 @@ export class AgregarUsuarioDialogoComponent implements OnInit {
   @ViewChild('formCreateUsuario') formCreateUsuario: NgForm;
 
   usuario: any = {}; //Usuario = new Usuario();
+  confirmacion:any;
 
   constructor(
     private usuarioSrv: UsuarioService,

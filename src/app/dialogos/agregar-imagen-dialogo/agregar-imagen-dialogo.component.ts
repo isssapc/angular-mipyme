@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarImagenDialogoComponent implements OnInit {
 
+  uploader:any;
+
   constructor() { }
 
   ngOnInit() {
