@@ -1,7 +1,7 @@
-<button mat-fab class="toolbar-fab" (click)="agregarImagen()" matTooltip="Agregar">
+<!-- <button mat-fab class="toolbar-fab" (click)="agregarImagen()" matTooltip="Agregar">
   <mat-icon>add_a_photo</mat-icon>
 </button>
-
+ -->
 
 <div class="container py-3">
 
@@ -13,7 +13,7 @@
       <form #formAnuncio="ngForm" id="formAnuncio" (ngSubmit)="createAnuncio(formAnuncio)">
 
         <div class="form-group row">
-          <label class="col-lg-3 col-form-label">Título del anuncio</label>
+          <label class="col-lg-3 col-form-label">Título</label>
           <div class="col-lg-9">
             <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.titulo" name="titulo" required/>
           </div>
@@ -47,7 +47,7 @@
 
 
         <div class="form-group row">
-          <label class="col-lg-3 col-form-label">Descripción del anuncio</label>
+          <label class="col-lg-3 col-form-label">Descripción</label>
           <div class="col-lg-9">
             <textarea class="form-control" rows="4" placeholder="" [(ngModel)]="anuncio.descripcion" name="descripcion" required> </textarea>
 
@@ -63,8 +63,8 @@
 
 
         <div class="form-group row">
-          <label class="col-lg-3 col-form-label">Publicar precios</label>
-          <div class="col-lg-9">
+          <!-- <label class="col-lg-3 col-form-label">Publicar precios</label> -->
+          <div class="col-lg-9 ml-auto">
             <mat-checkbox [(ngModel)]="anuncio.mostrar_precios" name="mostrar_precios">Mostrar precios en el anuncio</mat-checkbox>
           </div>
         </div>
@@ -72,16 +72,16 @@
         <fieldset [disabled]="!anuncio.mostrar_precios">
 
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label">Oferta</label>
+            <label class="col-lg-3 col-form-label">Precio</label>
             <div class="col-lg-9">
-              <mat-checkbox [(ngModel)]="anuncio.es_oferta" name="es_oferta">Es Oferta</mat-checkbox>
+              <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.precio" name="precio" />
             </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label">Precio</label>
-            <div class="col-lg-9">
-              <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.precio" name="precio" />
+            <!-- <label class="col-lg-3 col-form-label">Oferta</label> -->
+            <div class="col-lg-9 ml-auto">
+              <mat-checkbox [(ngModel)]="anuncio.es_oferta" name="es_oferta">Es Oferta</mat-checkbox>
             </div>
           </div>
 
@@ -96,8 +96,8 @@
         </fieldset>
 
         <div class="form-group row">
-          <label class="col-lg-3 col-form-label">Mostrar</label>
-          <div class="col-lg-9">
+         <!--  <label class="col-lg-3 col-form-label">Mostrar</label> -->
+          <div class="col-lg-9 ml-auto">
             <mat-checkbox [(ngModel)]="anuncio.mostrar_agregar" name="mostrar_agregar">Mostrar botón agregar</mat-checkbox>
           </div>
         </div>
@@ -106,7 +106,7 @@
 
       </form>
 
-      <button type="submit" form="formAnuncio" color="primary" mat-raised-button>Crear</button>
+      <button type="submit" form="formAnuncio" class="btn-block" color="primary" mat-raised-button>Crear</button>
 
     </div>
 
