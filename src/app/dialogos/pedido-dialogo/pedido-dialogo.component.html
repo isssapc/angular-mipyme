@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+
+  <div class="row">
+    <div class="col">
+      <div class="card mat-elevation-z2">
+        <div class="table-responsive">
+          <table class="table table-striped my-table-sm table-align-middle">
+            <thead>
+              <tr>
+
+                <th>Producto</th>
+                <th>Precio</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let pedido of data.pedidos">
+                <td>{{pedido.producto}}</td>
+                <td>{{pedido.precio}}</td>               
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>{{data.total}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">CANCELAR</button>
+  <button mat-button [mat-dialog-close]="true" color="warn">ELIMINAR</button>
+</div>
