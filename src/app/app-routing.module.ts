@@ -10,6 +10,10 @@ import { AnunciosComponent } from './components/anuncios/anuncios.component';
 import { CrearAnuncioComponent } from './components/crear-anuncio/crear-anuncio.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anuncio.component';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { PedidoComponent } from './components/pedido/pedido.component';
+
 
 const routes: Routes = [
 
@@ -28,6 +32,10 @@ const routes: Routes = [
       { path: 'crear-anuncio', component: CrearAnuncioComponent },
       { path: 'perfil', component: PerfilComponent },
       { path: 'editar-anuncio/:id', component: EditarAnuncioComponent },
+      { path: 'pedidos', component: PedidosComponent },
+      { path: 'clientes', component: ClientesComponent },
+      { path: 'pedido', component: PedidoComponent },
+ 
     ]
   },
   //not found

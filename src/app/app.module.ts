@@ -32,6 +32,10 @@ import { AgregarUsuarioDialogoComponent } from './dialogos/agregar-usuario-dialo
 import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anuncio.component';
 import { EditarUsuarioDialogoComponent } from './dialogos/editar-usuario-dialogo/editar-usuario-dialogo.component';
 import { ConfirmarBorradoDialogoComponent } from './dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { ClienteDialogoComponent } from './dialogos/cliente-dialogo/cliente-dialogo.component';
+import { PedidoDialogoComponent } from './dialogos/pedido-dialogo/pedido-dialogo.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
 
 
 //environment
@@ -40,6 +44,10 @@ import {  environment } from "../environments/environment";
 //firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { PedidoComponent } from './components/pedido/pedido.component';
+
+
+
 
 
 
@@ -59,7 +67,13 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AgregarUsuarioDialogoComponent,   
     EditarAnuncioComponent,
     EditarUsuarioDialogoComponent,
-    ConfirmarBorradoDialogoComponent
+    ConfirmarBorradoDialogoComponent,
+    PedidosComponent,
+    ClienteDialogoComponent,
+    PedidoDialogoComponent,
+    ClientesComponent,
+    PedidoComponent
+
   ],
   imports: [
     BrowserModule,
@@ -75,7 +89,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AgregarImagenDialogoComponent,
     AgregarUsuarioDialogoComponent,
     ConfirmarBorradoDialogoComponent,
-    EditarUsuarioDialogoComponent
+    EditarUsuarioDialogoComponent,
+    PedidoDialogoComponent,
+    ClienteDialogoComponent
   ],
 
   providers: [
