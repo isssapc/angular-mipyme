@@ -1,0 +1,56 @@
+<mat-toolbar color="">
+  <div class="container mb-0">
+    <div class="d-flex align-items-center">
+      <span>Pedidos</span>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="container p15px">
+
+  <div *ngIf="loading" class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+      <div class="card mat-elevation-z2">
+        <div class="table-responsive">
+          <table class="table table-striped my-table-sm table-align-middle">
+            <thead>
+              <tr>
+                <th>ID Pedido</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let pedido of pedidos">
+                <td>{{pedido.id_pedido}}</td>
+                <td>{{pedido.fecha}}</td>
+                <td>{{pedido.cliente}}</td>
+                <td class="text-right">
+                  <button mat-icon-button (click)="verCliente()">
+                    <mat-icon>contact_mail</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="verPedido()">
+                    <mat-icon>storage</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="verPedidoCompleto()">
+                      <mat-icon>create</mat-icon>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
