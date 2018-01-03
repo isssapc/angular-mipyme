@@ -29,8 +29,8 @@
 
   <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 
-    <mat-sidenav #navLeft class="app-sidenav-start" mode="over" align="start" opened="false"
-    [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+    <!-- [mode]="mobileQuery.matches ? 'over' : 'side'"  -->
+    <mat-sidenav #navLeft class="app-sidenav-start" mode="over" align="start" opened="false" mode="over" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
 
       <app-menu [sidenav]="navLeft"></app-menu>

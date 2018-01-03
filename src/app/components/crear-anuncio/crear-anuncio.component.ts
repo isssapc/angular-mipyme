@@ -82,7 +82,9 @@ export class CrearAnuncioComponent implements OnInit {
 
     this.uploadSrv.doUpload(this.fileItems).then(urls => {
       console.log("termina el upload", urls[0]);
-      this.anuncio.img_src = urls[0];
+
+      //no sabemos si ya se ha realizado la funcion para crear el thumbnail
+      this.anuncio.img_src = (urls[0].url as string).replace(urls[0].nombre, "thumb_" + urls[0].nombre);
 
     });
 

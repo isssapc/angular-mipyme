@@ -9,7 +9,6 @@ export class UsuarioService {
   usuarios: AngularFirestoreCollection<Usuario>;
 
   constructor(
-
     private db: AngularFirestore
   ) {
 
@@ -44,8 +43,12 @@ export class UsuarioService {
   createUsuario(usuario) {
 
     console.log("usuario", usuario);
+    let id = this.db.createId();
+    usuario.id = id;
 
-    return this.usuarios.add(usuario);
+    return this.db.doc("usuarios/" + id).set(usuario);
+
+    //return this.usuarios.add(usuario);
   }
 
   delUsuario(id: string) {

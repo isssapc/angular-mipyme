@@ -23,13 +23,18 @@ export class UsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuarioSrv.getSnapshotUsuarios()
+
+    //getSnapshotUsuarios
+
+    this.usuarioSrv.getUsuarios()
       .subscribe(usuarios => {
         this.usuarios = usuarios;
         this.loading = false;
+        console.log(usuarios);
+
       },
       (error: any) => { },
-      () => { console.log("finally") });
+      () => console.log("finally"));
   }
 
   agregarUsuario(): void {

@@ -34,11 +34,26 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
     const metageneration = object.metageneration; // Number of times metadata has been generated. New objects have a value of 1.
     // [END eventAttributes]
 
+    console.log("bucket", fileBucket);
+    console.log("File Path: ", filePath);
+    console.log("dirName", path.dirname(filePath));
+    console.log("basename", path.basename(filePath));
+
+    console.log("Resource State: ", resourceState);
+
+
+
     // [START stopConditions]
     // Exit if this is triggered on a file that is not an image.
+
+    if (path.dirname(filePath) !== "imagenes") {
+        console.log("El storage event no ha sido generado en la carpeta imagenes");
+        return null;
+    }
+
     if (!contentType.startsWith('image/')) {
         console.log('This is not an image.');
-        return;
+        return null;
     }
 
     // Get the file name.
@@ -46,28 +61,31 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
     // Exit if the image is already a thumbnail.
     if (fileName.startsWith('thumb_')) {
         console.log('Already a Thumbnail.');
-        return;
+        return null;
     }
 
     // Exit if this is a move or deletion event.
     if (resourceState === 'not_exists') {
         console.log('This is a deletion event.');
-        return;
+        return null;
     }
 
     // Exit if file exists but is not new and is only being triggered
     // because of a metadata change.
     if (resourceState === 'exists' && metageneration > 1) {
         console.log('This is a metadata change event.');
-        return;
+        return null;
     }
     // [END stopConditions]
+
+    console.log("Se superaron todas las condiciones de Stop");
+
 
     // [START thumbnailGeneration]
     // Download file from bucket.
     const bucket = gcs.bucket(fileBucket);
     const tempFilePath = path.join(os.tmpdir(), fileName);
-    const metadata = { contentType: contentType };
+    const metadata = { contentType: contentType, customMetadata: { thumbnail: true } };
     return bucket.file(filePath).download({
         destination: tempFilePath
     }).then(() => {
@@ -78,11 +96,25 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
         console.log('Thumbnail created at', tempFilePath);
         // We add a 'thumb_' prefix to thumbnails file name. That's where we'll upload the thumbnail.
         const thumbFileName = `thumb_${fileName}`;
-        const thumbFilePath = path.join(path.dirname(filePath), thumbFileName);
+        //const thumbFilePath = path.join(path.dirname(filePath), thumbFileName);
+        const thumbFilePath = path.join("thumbnails", thumbFileName);
         // Uploading the thumbnail.
+
+
+
         return bucket.upload(tempFilePath, { destination: thumbFilePath, metadata: metadata });
-        // Once the thumbnail has been uploaded delete the local file to free up disk space.
-    }).then(() => fs.unlinkSync(tempFilePath));
+        // return bucket.upload(tempFilePath, { destination: bucket.file(filePath), metadata: metadata });
+        //Once the thumbnail has been uploaded delete the local file to free up disk space.
+    }).then((file) => {
+
+        console.log("File", file);
+
+        fs.unlinkSync(tempFilePath);
+        //borramos el archivo original
+        //bucket.file(filePath).delete();
+
+
+    });
     // [END thumbnailGeneration]
 });
     // [END generateThumbnail]
