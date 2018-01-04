@@ -1,11 +1,12 @@
 <div class="container p15px">
 
+  <mat-card>
 
-  <div class="row">
-    <div class="col">
+    <div class="row">
+      <div class="col-12 col-sm-6 mb-5">
+        <h5 class="list-header">Datos del Cliente</h5>
 
-      <div class="card">
-        <div class="card-body">
+        <mat-nav-list>
           <div class="form-group row">
             <label class="col-sm-2">Nombre:</label>
             <div class="col-sm-10">
@@ -18,20 +19,31 @@
               <span>{{pedidos.email}}</span>
             </div>
           </div>
-
           <div class="form-group row">
             <label class="col-sm-2">Teléfono:</label>
             <div class="col-sm-10">
               <span>{{pedidos.telefono}}</span>
             </div>
           </div>
-        </div>
+        </mat-nav-list>
       </div>
 
+      <div class="col-12 col-sm-6">
+        <h5 class="list-header">Datos de Envio</h5>
+        <mat-nav-list>
+
+          {{pedidos.calle}}, {{pedidos.numero}}, {{pedidos.colonia}}, {{pedidos.cp}}
+
+        </mat-nav-list>
+      </div>
+    </div>
+  </mat-card>
 
 
-      <div class="card mat-elevation-z2">
-        <div class="table-responsive">
+  <div class="row py-2">
+    <div class="col">
+      <div class="card mat-elevation-z2 ">
+        <div class="table-responsive ">
           <table class="table table-striped my-table-sm table-align-middle">
             <thead>
               <tr>

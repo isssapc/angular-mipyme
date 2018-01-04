@@ -26,7 +26,11 @@ export class PedidoComponent implements OnInit {
     fecha: "12-12-2018 14:30 hrs",
     nombre_cliente:"Jorge Hernandez",
     email:"jorge@hotmail.com",
-    telefono: "9615489897"
+    telefono: "9615489897",
+    colonia: "Centro",
+    calle:"1ra Norte Poniente",
+    numero:"443",
+    cp:"2900"
   }
 
 

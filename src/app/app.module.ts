@@ -72,7 +72,8 @@ import { PedidoComponent } from './components/pedido/pedido.component';
     ClienteDialogoComponent,
     PedidoDialogoComponent,
     ClientesComponent,
-    PedidoComponent
+    PedidoComponent,
+    
 
   ],
   imports: [
