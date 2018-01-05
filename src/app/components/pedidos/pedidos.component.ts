@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class PedidosComponent implements OnInit {
 
+  loading:boolean=false;
+
   pedidos: any = [
     {
       fecha: "12-12-2017 14:00hrs",

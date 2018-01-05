@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
+  loading:boolean=false;
 
   clientes: any = [
     {
