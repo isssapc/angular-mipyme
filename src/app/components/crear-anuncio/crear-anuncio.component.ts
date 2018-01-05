@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDatepicker } from '@angular/material';
 import { AgregarImagenDialogoComponent } from '../../dialogos/agregar-imagen-dialogo/agregar-imagen-dialogo.component';
 import { AnuncioService } from '../../services/anuncio.service';
 import { FileItem } from '../../model/file-item';
 import { UploadService } from '../../services/upload.service';
-import { log } from 'util';
+
+import * as moment from 'moment';
+import { ViewChild } from '@angular/core';
 
 
-interface FullThumb{
-  full:Blob,
-  thumb:Blob
+
+
+interface FullThumb {
+  full: Blob,
+  thumb: Blob
 }
 
 
@@ -22,10 +26,17 @@ interface FullThumb{
 })
 export class CrearAnuncioComponent implements OnInit {
 
-  anuncio: any = {};
+  //@ViewChild("dpFechaPublicacion") dpFechaPublicacion: MatDatepicker<moment.Moment>;
+
+  fecha_publicacion = moment();
+
+  anuncio: any = { fecha_publicacion: moment().format() };
+  img_src: string = null;
   selectedOption: string;
 
   fileItems: FileItem[] = [];
+
+
 
   FULL_IMAGE_SPECS: any = {
     maxDimension: 1280,
@@ -51,15 +62,59 @@ export class CrearAnuncioComponent implements OnInit {
         let yyyy = now.getFullYear();
         let today = yyyy + "-" + mm + "-" + dd; */
 
-    let utc = new Date().toJSON().slice(0, 10);
+    //let utc = new Date().toJSON().slice(0, 10);
+    //let utc = new Date().toISOString();
+    //this.anuncio.fecha_publicacion = utc;
 
-    this.anuncio.fecha_publicacion = utc;
-
+    //this.anuncio.fecha_publicacion = moment();
 
 
   }
 
+  print() {
+    console.log("anuncio", this.anuncio);
+    console.log("files", this.fileItems);
+    console.log(this.fecha_publicacion.format());
+
+
+  }
+
+  onFechaChange() {
+    console.log("fecha change");
+
+    this.anuncio.fecha_publicacion = this.fecha_publicacion.format();
+  }
+
   createAnuncio(form: NgForm) {
+    console.log("createAnuncio");
+    console.log("form.value", form.value);
+    console.log("anuncio", this.anuncio);
+
+    
+        this.generateImages()
+        .then(result => {
+    
+          console.log("full", result.full);
+          console.log("thumb", result.thumb);
+    
+          this.anuncioSrv.createAnuncioConImagenes(result.full, result.thumb, this.fileItems[0], this.anuncio).then(id_anuncio => {
+            console.log("el id del nuevo anuncio es", id_anuncio);
+
+            this.anuncio={};
+            this.fileItems=[];
+            this.img_src=null;
+    
+          });
+    
+    
+        }); 
+
+   
+
+
+  }
+
+/*   createAnuncio2(form: NgForm) {
     console.log("createAnuncio");
     console.log("form.value", form.value);
     console.log("anuncio", this.anuncio);
@@ -76,7 +131,7 @@ export class CrearAnuncioComponent implements OnInit {
     });
 
 
-  }
+  } */
 
   agregarImagen() {
 
@@ -94,6 +149,7 @@ export class CrearAnuncioComponent implements OnInit {
   uploadImage() {
 
     console.log("uploadImage");
+
     /* 
         this.uploadSrv.doUpload(this.fileItems).then(urls => {
           console.log("termina el upload", urls[0]);
@@ -102,23 +158,27 @@ export class CrearAnuncioComponent implements OnInit {
           this.anuncio.img_src = (urls[0].url as string).replace(urls[0].nombre, "thumb_" + urls[0].nombre);
     
         }); */
+
     console.log("antes");
 
-    this.generateImages2()
+    this.generateImages()
       .then(result => {
-        
+
         console.log("full", result.full);
         console.log("thumb", result.thumb);
-        
-        this.uploadSrv.uploadNewPic(result.full, result.thumb, "usuario.jpg", "dksljfña").then(doc=>{
-          console.log("termina el upload", doc);
-          
-        });
-        
+        this.anuncio.fecha_publicacion = this.fecha_publicacion.format();
+
+        this.anuncioSrv.createAnuncioConImagenes(result.full, result.thumb, this.fileItems[0], this.anuncio)
+          .then(idAnuncio => {
+            console.log("anuncio creado con el id", idAnuncio);
+
+            this.anuncio = {};
+            this.img_src = null;
+            this.fileItems = [];
+
+          });
 
       });
-    
-
 
   }
 
@@ -158,11 +218,11 @@ export class CrearAnuncioComponent implements OnInit {
   displayImage(url) {
     console.log("displayImage");
 
-    this.anuncio.img_src = url;
+    this.img_src = url;
   }
 
 
-  generateImages() {
+  generateImages2() {
 
     console.log("generateImages");
 
@@ -217,7 +277,7 @@ export class CrearAnuncioComponent implements OnInit {
 
   }
 
-  generateImages2():Promise<FullThumb> {
+  generateImages(): Promise<FullThumb> {
 
     console.log("generateImages");
 
@@ -289,7 +349,12 @@ export class CrearAnuncioComponent implements OnInit {
     return thumbCanvas;
   }
 
+  clickInputImage(inputImage: HTMLInputElement) {
 
+    //console.log("clickInputImage", inputImage);
+    inputImage.click();
+
+  }
 
 
 }

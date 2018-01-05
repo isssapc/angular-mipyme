@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import {
 
@@ -34,10 +34,11 @@ import {
 
 } from "@angular/material";
 
-import * as _moment from 'moment';
-//import {default as _rollupMoment} from 'moment';
-//const moment = _rollupMoment || _moment;
-const moment= _moment;
+//import * as moment from 'moment';
+//import * as _moment from 'moment';
+/* import  { default as _rollupMoment}  from 'moment';
+const moment = _rollupMoment || _moment; */
+//const moment= _moment;
 
 export const MY_FORMATS = {
   parse: {
@@ -78,7 +79,7 @@ export const MY_FORMATS = {
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule
-   
+
   ],
   exports: [
 

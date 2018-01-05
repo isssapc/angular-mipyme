@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteDialogoComponent } from '../../dialogos/cliente-dialogo/cliente-dialogo.component';
 import { MatDialog } from '@angular/material';
-import { W_OK } from 'constants';
 import { PedidoDialogoComponent } from '../../dialogos/pedido-dialogo/pedido-dialogo.component';
 import { Router } from '@angular/router';
 

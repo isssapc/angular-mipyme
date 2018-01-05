@@ -137,6 +137,8 @@ export class UploadService {
 
       // fileItem.isUploading = true;
 
+      let fileItem;
+
       let metadata: firebase.storage.UploadMetadata = {
         customMetadata: {
           hola: "mundo"
@@ -210,14 +212,14 @@ export class UploadService {
         });
 
 
-    }
+    });
 
 
 
 
     /*   }); */
 
-      return promesa;
+    return promesa;
 
 
 
@@ -227,12 +229,13 @@ export class UploadService {
 
   }
 
-  uploadNewPic(pic, thumb, fileName, text) {
-    // Get a reference to where the post will be created.
-    const newPostKey = firebase.database().ref('/posts').push().key;
+  uploadNewPic(pic: Blob, thumb: Blob, fileItem: FileItem, anuncio: any) {
+
+    // Get a reference to where the anuncio will be created.
+    const newAnuncioKey = this.db.createId();
 
     // Start the pic file upload to Cloud Storage.
-    const picRef = firebase.storage().ref("full/"+fileName);
+    const picRef = firebase.storage().ref(`full/${newAnuncioKey}/${fileItem.filename}`);
     const metadata = {
       contentType: pic.type
     };
@@ -246,7 +249,7 @@ export class UploadService {
     });
 
     // Start the thumb file upload to Cloud Storage.
-    const thumbRef = firebase.storage().ref("thumb/"+fileName);
+    const thumbRef = firebase.storage().ref(`thumb/${newAnuncioKey}/${fileItem.filename}`);
     var tumbUploadTask = thumbRef.put(thumb, metadata).then(snapshot => {
       console.log('New thumb uploaded. Size:', snapshot.totalBytes, 'bytes.');
       var url = snapshot.metadata.downloadURLs[0];
@@ -259,22 +262,23 @@ export class UploadService {
     return Promise.all([picUploadTask, tumbUploadTask]).then(urls => {
       // Once both pics and thumbnails has been uploaded add a new post in the Firebase Database and
       // to its fanned out posts lists (user's posts and home post).
-      
+
       let imagen = {
         full_url: urls[0],
         thumb_url: urls[1],
-        text: text,
         timestamp: firebase.database.ServerValue.TIMESTAMP,
         full_storage_uri: picRef.toString(),
         thumb_storage_uri: thumbRef.toString()
-    /*     author: {
-          uid: this.auth.currentUser.uid,
-          full_name: this.auth.currentUser.displayName,
-          profile_picture: this.auth.currentUser.photoURL
-        } */
+        /*     author: {
+              uid: this.auth.currentUser.uid,
+              full_name: this.auth.currentUser.displayName,
+              profile_picture: this.auth.currentUser.photoURL
+            } */
       };
-      return this.createImage(imagen)
-      .then(ref => ref);
+
+      Object.assign(anuncio, imagen);
+      return this.createImage(anuncio)
+        .then(ref => ref);
       //return firebase.database().ref().update(update).then(() => newPostKey);
     });
   }

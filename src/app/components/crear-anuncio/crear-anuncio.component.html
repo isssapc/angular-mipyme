@@ -7,7 +7,7 @@
 
   <div class="row">
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-7">
       <h4 class="text-center">Configuración</h4>
 
       <form #formAnuncio="ngForm" id="formAnuncio" (ngSubmit)="createAnuncio(formAnuncio)">
@@ -24,35 +24,37 @@
           <div class="col-lg-9">
             <div class="input-group">
               <!-- (keydown.enter)="$event.preventDefault()" -->
-              <input class="form-control" [matDatepicker]="picker" placeholder="yyyy-mm-dd" [(ngModel)]="anuncio.fecha_publicacion" id="fecha_publicacion"
-                name="fecha_publicacion" required>
+              <input class="form-control" [matDatepicker]="dpFechaPublicacion" [(ngModel)]="fecha_publicacion" name="fecha_publicacion" (ngModelChange)="onFechaChange()" placeholder="yyyy-mm-dd" required>
               <span class="input-group-btn">
-                <button type="button" class="btn btn-secondary" (click)="picker.open()">
+                <button type="button" class="btn btn-secondary" (click)="dpFechaPublicacion.open()">
                   <i class="fa fa-calendar"></i>
                 </button>
               </span>
             </div>
-            <mat-datepicker touchUi="true" #picker></mat-datepicker>
+            <mat-datepicker touchUi="true" #dpFechaPublicacion></mat-datepicker>
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-lg-3 col-form-label">Imagen</label>
           <div class="col-lg-9">
-            <input class="form-control" type="file"  accept="image/*;capture=camera" name="img_src" #input (change)="readImage($event, input.files, anuncio)" />
+            <input class="form-control" type="file" accept="image/*;capture=camera" name="img_src" #inputImage (change)="readImage($event, inputImage.files, anuncio)"
+            />
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-lg-9 offset-lg-3"></div>
+          <button type="button" class="btn btn-primary" (click)="clickInputImage(inputImage)">Seleccionar Imagen</button>
           <button type="button" class="btn btn-primary" (click)="uploadImage()">Subir Imagen</button>
+          <button type="button" class="btn btn-primary" (click)="print()">Print</button>
         </div>
 
 
         <div class="form-group row">
           <label class="col-lg-3 col-form-label">Descripción</label>
           <div class="col-lg-9">
-            <textarea class="form-control" rows="4" placeholder="" [(ngModel)]="anuncio.descripcion" name="descripcion" required> </textarea>
+            <textarea class="form-control" rows="3" placeholder="" [(ngModel)]="anuncio.descripcion" name="descripcion" required> </textarea>
 
           </div>
         </div>
@@ -81,18 +83,17 @@
             </div>
           </div>
 
-          <div class="form-group row">
-            <!-- <label class="col-lg-3 col-form-label">Oferta</label> -->
+          <!--   <div class="form-group row">
+             <label class="col-lg-3 col-form-label">Oferta</label> 
             <div class="col-lg-9 ml-auto">
               <mat-checkbox [(ngModel)]="anuncio.es_oferta" name="es_oferta">Es Oferta</mat-checkbox>
             </div>
-          </div>
+          </div> -->
 
           <div class="form-group row">
             <label class="col-lg-3 col-form-label">Precio Tachado</label>
             <div class="col-lg-9">
-              <input [disabled]="!anuncio.es_oferta" class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.precio_tachado"
-                name="precio_tachado" />
+              <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.precio_tachado" name="precio_tachado" />
             </div>
           </div>
 
@@ -109,15 +110,41 @@
 
       </form>
 
-      <button type="submit" form="formAnuncio" class="btn-block" color="primary" mat-raised-button>Crear</button>
+      <button type="submit" form="formAnuncio" class="btn-block" color="primary" mat-raised-button [disabled]="formAnuncio.invalid">Crear</button>
 
     </div>
 
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
       <h4 class="text-center">Previsualización</h4>
 
-      <app-anuncio [anuncio]="anuncio"></app-anuncio>
+      <mat-card>
+
+        <mat-card-header>
+          <div mat-card-avatar style="background-size:cover" [style.background-image]="'url(' + (anuncio.avatar_src || 'assets/imgs/logo.png' ) + ')' "></div>
+          <mat-card-title>{{anuncio.titulo}}</mat-card-title>
+          <mat-card-subtitle>{{anuncio.fecha_publicacion|date:'longDate'}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image [src]="(img_src|| 'assets/imgs/drop-images.png')">
+
+        <mat-card-content class="text-center">
+          <p>{{anuncio.descripcion}}</p>
+          <h3 *ngIf="anuncio.mostrar_precios">
+            <span class="text-danger" style="text-decoration:line-through">{{anuncio.precio_tachado}}</span>
+            <span>{{anuncio.precio}}</span>
+          </h3>
+          <!-- <h3>{{anuncio.precio}}</h3> -->
+          <p>{{anuncio.categoria}}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="text-right" *ngIf="anuncio.mostrar_agregar">
+          <button type="button" mat-button>Agregar
+            <i class="fa fa-shopping-cart"></i>
+          </button>
+        </mat-card-actions>
+
+      </mat-card>
 
     </div>
 
