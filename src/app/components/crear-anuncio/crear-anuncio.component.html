@@ -39,7 +39,7 @@
         <div class="form-group row">
           <label class="col-lg-3 col-form-label">Imagen</label>
           <div class="col-lg-9">
-            <input class="form-control" type="file" name="img_src" #input (change)="onChangeFile($event, input.files, anuncio)" />
+            <input class="form-control" type="file"  accept="image/*;capture=camera" name="img_src" #input (change)="readImage($event, input.files, anuncio)" />
           </div>
         </div>
 
