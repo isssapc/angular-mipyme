@@ -3,6 +3,7 @@ import { ClienteDialogoComponent } from '../../dialogos/cliente-dialogo/cliente-
 import { MatDialog } from '@angular/material';
 import { PedidoDialogoComponent } from '../../dialogos/pedido-dialogo/pedido-dialogo.component';
 import { Router } from '@angular/router';
+import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -11,9 +12,9 @@ import { Router } from '@angular/router';
 })
 export class PedidosComponent implements OnInit {
 
-  loading:boolean=false;
+  loading: boolean = false;
 
-  pedidos: any = [
+  pedidos: any[] = [];/*  [
     {
       fecha: "12-12-2017 14:00hrs",
       cliente: "Jorge Hernandez",
@@ -26,14 +27,19 @@ export class PedidosComponent implements OnInit {
       fecha: "12-12-2017 14:00hrs",
       cliente: "Maria Perez",
     }
-  ]
+  ] */
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
+    private pedidoSrv: PedidoService
   ) { }
 
   ngOnInit() {
+    this.pedidoSrv.getPedidos()
+      .subscribe(pedidos => {
+        this.pedidos = pedidos;
+      })
   }
 
   verCliente() {

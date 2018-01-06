@@ -45,6 +45,7 @@ import {  environment } from "../environments/environment";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PedidoComponent } from './components/pedido/pedido.component';
+import { PedidoService } from './services/pedido.service';
 
 
 
@@ -99,7 +100,8 @@ import { PedidoComponent } from './components/pedido/pedido.component';
     AuthService,
     AnuncioService,
     UsuarioService,
-    UploadService
+    UploadService,
+    PedidoService
   ],
   bootstrap: [AppComponent]
 })
