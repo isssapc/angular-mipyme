@@ -8,6 +8,10 @@ import { FileItem } from '../../model/file-item';
 import { UploadService } from '../../services/upload.service';
 
 import * as moment from 'moment';
+
+
+
+
 import { ViewChild } from '@angular/core';
 
 
@@ -27,6 +31,8 @@ interface FullThumb {
 export class CrearAnuncioComponent implements OnInit {
 
   //@ViewChild("dpFechaPublicacion") dpFechaPublicacion: MatDatepicker<moment.Moment>;
+
+  
 
   fecha_publicacion = moment();
 
@@ -277,13 +283,16 @@ export class CrearAnuncioComponent implements OnInit {
 
   }
 
+
+  // devuelve una promesa con los Blobs de 
+  // la imagen y el thumbnail
   generateImages(): Promise<FullThumb> {
 
     console.log("generateImages");
 
     return new Promise((resolve, reject) => {
 
-      const displayPicture = url => {
+      const createBlobs = url => {
         const image = new Image();
         image.src = url;
 
@@ -319,7 +328,7 @@ export class CrearAnuncioComponent implements OnInit {
       };
 
       const reader = new FileReader();
-      reader.onload = (e: any) => displayPicture(e.target.result);
+      reader.onload = (e: any) => createBlobs(e.target.result);
       reader.readAsDataURL(this.fileItems[0].file);
 
     });
