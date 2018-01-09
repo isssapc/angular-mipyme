@@ -34,7 +34,7 @@ const routes: Routes = [
       { path: 'editar-anuncio/:id', component: EditarAnuncioComponent },
       { path: 'pedidos', component: PedidosComponent },
       { path: 'clientes', component: ClientesComponent },
-      { path: 'pedido', component: PedidoComponent },
+      { path: 'pedido/:id', component: PedidoComponent },
  
     ]
   },
