@@ -23,6 +23,9 @@
                 <th>ID Pedido</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
+                <th>Email</th>
+                <th>Número</th>
+                <th>#</th>
                 <th></th>
               </tr>
             </thead>
@@ -31,7 +34,10 @@
               <tr *ngFor="let pedido of pedidos">
                 <td>{{pedido.id_pedido}}</td>
                 <td>{{pedido.fecha}}</td>
-                <td>{{pedido.cliente}}</td>
+                <td>{{pedido.cliente_nombre}}</td>
+                <td>{{pedido.cliente_email}}</td>
+                <td>{{pedido.cliente_numero}}</td>
+                <td>{{pedido.productos.length}}</td>
                 <td class="text-right">
                   <button mat-icon-button (click)="verCliente()">
                     <mat-icon>contact_mail</mat-icon>
@@ -40,8 +46,8 @@
                     <mat-icon>storage</mat-icon>
                   </button>
                   <button mat-icon-button (click)="verPedidoCompleto()">
-                      <mat-icon>create</mat-icon>
-                    </button>
+                    <mat-icon>create</mat-icon>
+                  </button>
                 </td>
               </tr>
             </tbody>

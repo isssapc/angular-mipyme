@@ -105,9 +105,16 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
         return bucket.upload(tempFilePath, { destination: thumbFilePath, metadata: metadata });
         // return bucket.upload(tempFilePath, { destination: bucket.file(filePath), metadata: metadata });
         //Once the thumbnail has been uploaded delete the local file to free up disk space.
-    }).then((file) => {
+    }).then((data) => {
 
-        console.log("File", file);
+        //del tipo firebase.storage.Reference
+        var snapshot= data[0];
+
+        console.log("Rereference", data[0]);
+/*         bucket.file(data[0].name).getSignedUrl({expires:"2017-03-12"}).then(url=>{
+            console.log("URL", url);
+            
+        }); */
 
         fs.unlinkSync(tempFilePath);
         //borramos el archivo original
