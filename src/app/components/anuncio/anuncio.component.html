@@ -10,8 +10,8 @@
   <mat-card-content class="text-center">
     <p>{{anuncio.descripcion}}</p>
     <h3 *ngIf="anuncio.mostrar_precios">
-      <span class="text-danger" style="text-decoration:line-through">{{anuncio.precio_tachado}}</span>
-      <span>{{anuncio.precio}}</span>
+      <span class="text-danger" style="text-decoration:line-through">{{anuncio.precio_tachado|currency}}</span>
+      <span>{{anuncio.precio|currency}}</span>
     </h3>
     <!-- <h3>{{anuncio.precio}}</h3> -->
     <p>{{anuncio.categoria}}</p>
