@@ -11,4 +11,8 @@ export class PedidoService {
     return this.db.collection<any>("pedidos").valueChanges();
   }
 
+  getPedido(id) {
+    return this.db.doc("pedidos/"+ id).valueChanges();
+  }
+
 }

@@ -39,16 +39,18 @@ export class PedidosComponent implements OnInit {
     this.pedidoSrv.getPedidos()
       .subscribe(pedidos => {
         this.pedidos = pedidos;
+        console.log("pedido ok", pedidos);
       })
   }
 
-  verCliente() {
+  verCliente(pedido) {
 
     let dialogRef = this.dialog.open(ClienteDialogoComponent, {
       data: {
-        nombre: "Jorge Hernandez",
-        telefono: "9612365458",
-        email: "jorge@hotmail.com",
+        nombre: pedido.cliente_nombre,
+        email: pedido.cliente_email,
+        numero: pedido.cliente_numero,        
+
       },
       width: '500px',
     });
@@ -58,27 +60,12 @@ export class PedidosComponent implements OnInit {
   }
 
 
-  verPedido() {
+  verProductos(pedido) {
 
     let dialogRef = this.dialog.open(PedidoDialogoComponent, {
       data: {
 
-        pedidos: [
-          {
-            producto: "Pantalon",
-            precio: "$1,000.00"
-          },
-          {
-            producto: "Pants Deportivos",
-            precio: "$1,000.00"
-          },
-          {
-            producto: "Tenis",
-            precio: "$1,500.00"
-          }
-        ],
-        total: "$3,500.00",
-
+        productos: pedido.productos
 
       },
       width: '500px',
@@ -88,8 +75,8 @@ export class PedidosComponent implements OnInit {
 
   }
 
-  verPedidoCompleto() {
-    this.router.navigate(["/pedido"]);
+  verPedidoCompleto(pedido) {
+    this.router.navigate(["/pedido",pedido.id]);
   }
 
 

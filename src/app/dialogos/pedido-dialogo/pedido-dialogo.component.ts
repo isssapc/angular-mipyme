@@ -16,4 +16,12 @@ export class PedidoDialogoComponent implements OnInit {
   ngOnInit() {
   }
 
+  totalProductos() {
+    let total = 0;
+    this.data.productos.forEach(producto => {
+      total = total + (producto.cantidad * producto.precio);
+    });
+    return total;
+  }
+
 }
