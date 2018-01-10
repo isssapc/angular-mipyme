@@ -23,5 +23,14 @@ export class Anuncio {
     full_storage_uri?: string;
     thumb_storage_uri?: string;
 
+    
+    public static copiar(anuncio: Anuncio): Anuncio {
+        let copia = JSON.stringify(anuncio);
+        return JSON.parse(copia);
+
+
+    }
+
+
 
 }

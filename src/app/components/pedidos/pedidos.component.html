@@ -39,13 +39,13 @@
                 <td>{{pedido.cliente_numero}}</td>
                 <td>{{pedido.productos.length}}</td>
                 <td class="text-right">
-                  <button mat-icon-button (click)="verCliente()">
+                  <button mat-icon-button (click)="verCliente(pedido)">
                     <mat-icon>contact_mail</mat-icon>
                   </button>
-                  <button mat-icon-button (click)="verPedido()">
+                  <button mat-icon-button (click)="verProductos(pedido)">
                     <mat-icon>storage</mat-icon>
                   </button>
-                  <button mat-icon-button (click)="verPedidoCompleto()">
+                  <button mat-icon-button (click)="verPedidoCompleto(pedido)">
                     <mat-icon>create</mat-icon>
                   </button>
                 </td>

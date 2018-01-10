@@ -13,11 +13,13 @@ export class MenuComponent implements OnInit {
 
   links: any[] = [
 
-
+    { titulo: "Iniciar Sesión", route: "login" },
     { titulo: "Tablero", route: "tablero" },
     { titulo: "Usuarios", route: "usuarios" },
     { titulo: "Anuncios", route: "anuncios" },
     { titulo: "Crear Anuncio", route: "crear-anuncio" },
+    { titulo: "Pedidos", route: "pedidos" },
+
     //{ titulo: "Usuarios", route: "usuarios" },
 
 
