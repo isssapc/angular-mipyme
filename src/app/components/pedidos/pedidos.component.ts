@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteDialogoComponent } from '../../dialogos/cliente-dialogo/cliente-dialogo.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { PedidoDialogoComponent } from '../../dialogos/pedido-dialogo/pedido-dialogo.component';
 import { Router } from '@angular/router';
 import { PedidoService } from '../../services/pedido.service';
+import { ConfirmarBorradoDialogoComponent } from '../../dialogos/confirmar-borrado-dialogo/confirmar-borrado-dialogo.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -32,7 +33,8 @@ export class PedidosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private pedidoSrv: PedidoService
+    private pedidoSrv: PedidoService,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -77,6 +79,34 @@ export class PedidosComponent implements OnInit {
 
   verPedidoCompleto(pedido) {
     this.router.navigate(["/pedido",pedido.id]);
+  }
+
+  delUsuario(pedido) {
+
+
+    /* let dialogRef = this.dialog.open(ConfirmarBorradoDialogoComponent, {
+      data: {
+        title: "Eliminar Pedido",
+        content: `¿Desea eliminar el Pedido?`
+      },
+      width: "500px"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result === true) {
+
+        this.pedidoSrv.delPedido(pedido.id).then(() => {
+
+          this.snackBar.open("Pedido Eliminado", "Cerrar", {
+            duration: 2000
+          });
+        });
+
+      }
+
+    });
+ */
   }
 
 
