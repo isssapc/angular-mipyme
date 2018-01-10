@@ -5,13 +5,13 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <form #formLogin="ngForm" class="form-signin" (ngSubmit)="login(usuario)">
-          <h4 class="form-signin-heading">Candidaturas INDEPENDIENTES</h4>
+        <form #formLogin="ngForm" class="form-signin" (ngSubmit)="login(formLogin)">
+          <h4 class="form-signin-heading">MiPymeApp</h4>
           <label for="email" class="sr-only">Email</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="usuario.email" required
+          <input type="email" id="email" name="email" ngModel class="form-control" placeholder="Email"  required
             autofocus>
           <label for="password" class="sr-only">Password</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="usuario.password"
+          <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" 
             required>
 
           <!--   <div class="checkbox"> 
@@ -19,7 +19,7 @@
             <input type="checkbox" value="remember-me"> Recordar
           </label>
         </div> -->
-          <button class="btn btn-lg btn-primary btn-block" [disabled]="!formLogin.form.valid" type="submit">Iniciar sesión</button>
+          <button class="btn btn-lg btn-primary btn-block" [disabled]="formLogin.invalid" type="submit">Iniciar sesión</button>
           <div class="text-danger text-center" *ngIf="alert">{{alert}}</div>
         </form>
 

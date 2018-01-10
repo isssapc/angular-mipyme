@@ -47,6 +47,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { PedidoService } from './services/pedido.service';
 import { EditarAnuncioDialogoComponent } from './dialogos/editar-anuncio-dialogo/editar-anuncio-dialogo.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 
@@ -86,7 +87,8 @@ import { EditarAnuncioDialogoComponent } from './dialogos/editar-anuncio-dialogo
     AppRoutingModule,
     AngularMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
 
   entryComponents: [

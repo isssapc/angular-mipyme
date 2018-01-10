@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-layout',
@@ -9,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+  username: string;
+  authStateSubscription: Subscription;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -16,8 +20,9 @@ export class LayoutComponent implements OnInit {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
-    private auth: AuthService,
+    //private auth: AuthService,
     private router: Router,
+    private afAuth: AngularFireAuth
   ) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -27,15 +32,35 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.authStateSubscription = this.afAuth.authState.subscribe((usuario) => {
+
+      if (usuario) {
+        this.username = usuario.displayName ? usuario.displayName : usuario.email;
+        //console.log(usuario);
+
+
+      } else {
+        this.username = null;
+        return;
+
+      }
+
+
+    });
+
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.authStateSubscription.unsubscribe();
   }
 
-  logout(){
+  logout() {
     console.log("logout");
-    
+    this.afAuth.auth.signOut();
+    this.router.navigate(["/login"]);
+
   }
 
 }
