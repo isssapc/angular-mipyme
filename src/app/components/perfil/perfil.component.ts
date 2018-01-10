@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
 
-  usuario: any;
+  usuario: any={};
 
 
   constructor() { }

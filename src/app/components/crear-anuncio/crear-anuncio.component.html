@@ -24,7 +24,8 @@
           <div class="col-lg-9">
             <div class="input-group">
               <!-- (keydown.enter)="$event.preventDefault()" -->
-              <input class="form-control" [matDatepicker]="dpFechaPublicacion" [(ngModel)]="fecha_publicacion" name="fecha_publicacion" (ngModelChange)="onFechaChange()" placeholder="yyyy-mm-dd" required>
+              <input class="form-control" [matDatepicker]="dpFechaPublicacion" [(ngModel)]="fecha_publicacion" name="fecha_publicacion"
+                (ngModelChange)="onFechaChange()" placeholder="yyyy-mm-dd" required>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-secondary" (click)="dpFechaPublicacion.open()">
                   <i class="fa fa-calendar"></i>
@@ -125,10 +126,15 @@
           <mat-card-title>{{anuncio.titulo}}</mat-card-title>
           <mat-card-subtitle>{{anuncio.fecha_publicacion|date:'longDate'}}</mat-card-subtitle>
         </mat-card-header>
-
+        <!-- 'assets/imgs/drop-images.png' -->
         <img mat-card-image [src]="(img_src|| 'assets/imgs/drop-images.png')">
 
+
+
         <mat-card-content class="text-center">
+          <button mat-fab (click)="agregarImagen()" matTooltip="Agregar">
+            <mat-icon>add_a_photo</mat-icon>
+          </button>
           <p>{{anuncio.descripcion}}</p>
           <h3 *ngIf="anuncio.mostrar_precios">
             <span class="text-danger" style="text-decoration:line-through">{{anuncio.precio_tachado|currency}}</span>
