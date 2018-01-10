@@ -18,14 +18,14 @@
             <input class="form-control" type="text" placeholder="" [(ngModel)]="anuncio.titulo" name="titulo" required/>
           </div>
         </div>
-
+<!-- 
         <div class="form-group row">
           <label class="col-lg-3 col-form-label">Fecha publicación</label>
           <div class="col-lg-9">
             <div class="input-group">
-              <!-- (keydown.enter)="$event.preventDefault()" -->
+              
               <input class="form-control" [matDatepicker]="dpFechaPublicacion" [(ngModel)]="fecha_publicacion" name="fecha_publicacion"
-                (ngModelChange)="onFechaChange()" placeholder="yyyy-mm-dd" required>
+              (ngModelChange)="onFechaChange()" placeholder="yyyy-mm-dd" required>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-secondary" (click)="dpFechaPublicacion.open()">
                   <i class="fa fa-calendar"></i>
@@ -34,7 +34,7 @@
             </div>
             <mat-datepicker touchUi="true" #dpFechaPublicacion></mat-datepicker>
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group row">
           <label class="col-lg-3 col-form-label">Imagen</label>
@@ -154,6 +154,105 @@
 
     </div>
 
+  </div>
+
+
+  <div class="row">
+    <div class="col-4">
+      <mat-card>
+
+        <mat-card-header>
+          <div mat-card-avatar style="background-size:cover" [style.background-image]="'url(' + (anuncio.avatar_src || 'assets/imgs/logo.png' ) + ')' "></div>
+          <mat-card-title>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Titulo">
+            </mat-form-field>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Fecha">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <!-- 'assets/imgs/drop-images.png' -->
+        <img mat-card-image [src]="(img_src|| 'assets/imgs/drop-images.png')">
+
+
+
+        <mat-card-content>
+
+
+          <textarea matInput placeholder="Descripción"></textarea>
+
+          <div class="form-group row">
+            <div class="col-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Precio">
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Precio Tachado">
+              </mat-form-field>
+            </div>
+          </div>
+          <!-- <h3>{{anuncio.precio}}</h3> -->
+          <p>{{anuncio.categoria}}</p>
+
+        </mat-card-content>
+
+        <mat-card-actions class="text-right" *ngIf="anuncio.mostrar_agregar">
+          <button type="button" mat-button>Agregar
+            <i class="fa fa-shopping-cart"></i>
+          </button>
+        </mat-card-actions>
+
+      </mat-card>
+    </div>
+
+    <div class="col-6">
+
+      <form #formAnuncio="ngForm" id="formAnuncio" (ngSubmit)="createAnuncio(formAnuncio)">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Título" [(ngModel)]="anuncio.titulo" name="titulo" >
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="dpFecha" placeholder="Fecha publicación" (ngModelChange)="onFechaChange()" [(ngModel)]="fecha_publicacion" name="fecha_publicacion">
+            <mat-datepicker-toggle matSuffix [for]="dpFecha"></mat-datepicker-toggle>
+            <mat-datepicker #dpFecha></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput rows="3" placeholder="Descripción" [(ngModel)]="anuncio.descripcion" name="descripcion" ></textarea>
+          </mat-form-field>
+
+          <mat-checkbox [(ngModel)]="anuncio.mostrar_precios" name="mostrar_precios">Mostrar precios en el anuncio</mat-checkbox>
+
+          <!-- <fieldset [disabled]="!anuncio.mostrar_precios"> -->
+
+          <mat-form-field>
+            <input matInput placeholder="Precio" [(ngModel)]="anuncio.precio" name="precio">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Precio Tachado" [(ngModel)]="anuncio.precio_tachado" name="precio_tachado">
+          </mat-form-field>
+
+          <!--      </fieldset> -->
+
+
+          <mat-checkbox [(ngModel)]="anuncio.mostrar_agregar" name="mostrar_agregar">Mostrar botón agregar</mat-checkbox>
+
+
+
+        </div>
+      </form>
+
+    </div>
   </div>
 
 
