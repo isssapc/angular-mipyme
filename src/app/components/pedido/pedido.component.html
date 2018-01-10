@@ -1,80 +1,166 @@
 <div class="container p15px">
 
-  <mat-card>
+  <!--   <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Datos del Cliente
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <div class="form-group row">
+          <label class="col-sm-1">
+            <mat-icon>person</mat-icon>
+          </label>
+          <div class="col-sm-11">
+            <span>{{pedido.cliente_nombre}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-1">
+            <mat-icon>email</mat-icon>
+          </label>
+          <div class="col-sm-11">
+            <span>{{pedido.cliente_email}}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-1">
+            <mat-icon>call</mat-icon>
+          </label>
+          <div class="col-sm-11">
+            <span>{{pedido.cliente_numero}}</span>
+          </div>
+        </div>
 
-    <div class="row">
-      <div class="col-12 col-sm-6 mb-5">
-        <h5 class="list-header">Datos del Cliente</h5>
+        <div class="form-group row">
+          <label class="col-sm-1">
+            <mat-icon>pin_drop</mat-icon>
+          </label>
+          <div class="col-sm-11">
+            <span>1ra Norte Poniente 443 Código Postal 29000</span>
+          </div>
+        </div>
+      </mat-nav-list>
 
-        <mat-nav-list>
-          <div class="form-group row">
-            <label class="col-sm-2">Nombre:</label>
-            <div class="col-sm-10">
-              <span>{{pedido.cliente_nombre}}</span>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Productos
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <div class="card mat-elevation-z2 ">
+            <div class="table-responsive ">
+              <table class="table table-striped my-table-sm table-align-middle">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let producto of pedido.productos">
+                    <td>{{producto.titulo}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.precio|currency}}</td>
+                    <td>{{producto.cantidad * producto.precio|currency}}</td>
+
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <strong>Total</strong>
+                    </td>
+                    <td>{{totalProductos()|currency}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-2">Email:</label>
-            <div class="col-sm-10">
-              <span>{{pedido.cliente_email}}</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2">Teléfono:</label>
-            <div class="col-sm-10">
-              <span>{{pedido.cliente_numero}}</span>
-            </div>
-          </div>
-        </mat-nav-list>
-      </div>
 
-      <div class="col-12 col-sm-6">
-        <h5 class="list-header">Datos de Envio</h5>
-        <mat-nav-list>
-
-
-
-        </mat-nav-list>
-      </div>
-    </div>
-  </mat-card>
-
-
-  <div class="row py-2">
-    <div class="col">
-      <div class="card mat-elevation-z2 ">
-        <div class="table-responsive ">
-          <table class="table table-striped my-table-sm table-align-middle">
-            <thead>
-              <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Total</th>
-
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr *ngFor="let producto of pedido.productos">
-                <td>{{producto.titulo}}</td>
-                <td>{{producto.cantidad}}</td>
-                <td>{{producto.precio|currency}}</td>
-                <td>{{producto.cantidad * producto.precio|currency}}</td>
-
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td><strong>Total</strong></td>
-                <td>{{totalProductos()|currency}}</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
+    </mat-expansion-panel>
+  </mat-accordion> -->
 
-    </div>
-  </div>
+  <mat-tab-group>
+    <mat-tab label="Cliente">
+     
+        <mat-list>
+
+          <mat-list-item>
+            <mat-icon mat-list-icon>person</mat-icon>
+            <h4 mat-line>{{pedido.cliente_nombre}}</h4>
+            <!--   <p mat-line> {{folder.updated | date}} </p> -->
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>email</mat-icon>
+            <h4 mat-line>{{pedido.cliente_email}}</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>call</mat-icon>
+            <h4 mat-line>{{pedido.cliente_numero}}</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>pin_drop</mat-icon>
+            <h4 mat-line>1ra Norte Poniente 443 Código Postal 29000</h4>
+          </mat-list-item>
+
+        </mat-list>
+      
+
+    </mat-tab>
+    <mat-tab label="Productos">
+<!--       <div class="row">
+        <div class="col">
+          <div class="card mat-elevation-z2 "> -->
+
+            <div class="table-responsive mt-3">
+              <table class="table table-striped my-table-sm table-align-middle">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let producto of pedido.productos">
+                    <td>{{producto.titulo}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.precio|currency}}</td>
+                    <td>{{producto.cantidad * producto.precio|currency}}</td>
+
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <strong>Total</strong>
+                    </td>
+                    <td>{{totalProductos()|currency}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+      <!--     </div>
+
+        </div>
+      </div> -->
+    </mat-tab>
+  </mat-tab-group>
+
 
 </div>
