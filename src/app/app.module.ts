@@ -15,6 +15,8 @@ import { MenuComponent } from './components/menu/menu.component';
 
 
 // servicios
+import { AuthGuard } from './guards/auth.guard';
+
 import { AuthService } from './services/auth.service';
 import { AnuncioService } from './services/anuncio.service';
 import { UsuarioService } from './services/usuario.service';
@@ -102,6 +104,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   ],
 
   providers: [
+    AuthGuard,
     AuthService,
     AnuncioService,
     UsuarioService,

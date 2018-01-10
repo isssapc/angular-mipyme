@@ -53,7 +53,10 @@ export class LayoutComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
-    this.authStateSubscription.unsubscribe();
+    if (this.authStateSubscription) {
+      this.authStateSubscription.unsubscribe();
+    }
+
   }
 
   logout() {

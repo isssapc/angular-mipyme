@@ -13,6 +13,7 @@ import { EditarAnuncioComponent } from './components/editar-anuncio/editar-anunc
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { PedidoComponent } from './components/pedido/pedido.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
 
   {
     path: '', component: LayoutComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: 'tablero', component: TableroComponent },
       { path: 'usuarios', component: UsuariosComponent },
